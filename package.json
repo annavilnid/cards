@@ -58,8 +58,8 @@
     }
   },
   "prettier": {
+    "printWidth": 100,
     "semi": true,
-    "singleQuote": false,
-    "printWidth": 120
+    "singleQuote": false
   }
 }
