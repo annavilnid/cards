@@ -12,6 +12,15 @@ export const AuthApi = {
   login: (params: ArgLoginType) => {
     return AuthInstance.post<LoginResponseType>("login", params);
   },
+  forgotPassword: (params: ArgForgotPasswordType) => {
+    return AuthInstance.post<any>("forgot", params);
+  },
+  getProfile: (params: any) => {
+    return AuthInstance.post<any>("me", params);
+  },
+  changeUsersData: (params: any) => {
+    return AuthInstance.put<any>("me", params);
+  },
 };
 
 export type ArgRegisterType = Omit<ArgLoginType, "rememberMe">;
@@ -20,6 +29,12 @@ export type ArgLoginType = {
   email: string;
   password: string;
   rememberMe: boolean;
+};
+
+export type ArgForgotPasswordType = {
+  email: string;
+  from?: string;
+  message?: string;
 };
 
 export type RegisterResponseType = {

@@ -1,14 +1,15 @@
 import { useAppDispatch } from "@/app/hooks";
 import { authThunks } from "@/features/auth/authSlice";
+import { RootState } from "@/app/store";
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();
 
   const loginHandler = () => {
     const payload = {
-      email: "test_mail@mail.ru",
+      email: "anna.vilnid@gmail.com",
       password: "12345678",
-      rememberMe: false,
+      rememberMe: true,
     };
     dispatch(authThunks.login(payload));
   };

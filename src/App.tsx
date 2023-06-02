@@ -8,7 +8,8 @@ import { Provider } from "react-redux";
 import { store } from "@/app/store";
 import { SignUp } from "@/features/signUp/SignUp";
 import { SignIn } from "@/features/signIn/SignIn";
-
+import { ForgotPassword } from "@/features/setNewPassword/ForgotPassword";
+import { Profile } from "@/features/profile/Profile";
 export const Test = () => {
   const isLoading = useAppSelector((state) => state.app.isLoading);
   const dispatch = useAppDispatch();
@@ -78,6 +79,14 @@ const router = createBrowserRouter([
   {
     element: <SignIn />,
     path: "/sign-in",
+  },
+  {
+    element: <ForgotPassword />,
+    path: "/forgot-password",
+  },
+  {
+    element: <Profile />,
+    path: "/profile",
   },
 ]);
 
