@@ -2,14 +2,16 @@ import { Counter } from "./features/counter/Counter";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { useEffect } from "react";
 import { appActions } from "@/app/AppSlice";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
 import { store } from "@/app/store";
-import { SignUp } from "@/features/signUp/SignUp";
+import { SignUp_t } from "@/features/signUp/SignUp_t";
 import { SignIn } from "@/features/signIn/SignIn";
 import { ForgotPassword } from "@/features/setNewPassword/ForgotPassword";
 import { Profile } from "@/features/profile/Profile";
+import { Logo } from "@/features/logo/Logo";
+import { Form } from "@/features/form/Form";
 export const Test = () => {
   const isLoading = useAppSelector((state) => state.app.isLoading);
   const dispatch = useAppDispatch();
@@ -67,39 +69,48 @@ export const Test = () => {
   );
 };
 
-const router = createBrowserRouter([
-  {
-    element: <Test />,
-    path: "/",
-  },
-  {
-    element: <SignUp />,
-    path: "/sign-up",
-  },
-  {
-    element: <SignIn />,
-    path: "/sign-in",
-  },
-  {
-    element: <ForgotPassword />,
-    path: "/forgot-password",
-  },
-  {
-    element: <Profile />,
-    path: "/profile",
-  },
-]);
+//TODO
+// const router = createBrowserRouter([
+//   {
+//     element: <Test />,
+//     path: "/",
+//   },
+//   {
+//     element: <SignUp_t />,
+//     path: "/sign-up",
+//   },
+//   {
+//     element: <SignIn />,
+//     path: "/sign-in",
+//   },
+//   {
+//     element: <ForgotPassword />,
+//     path: "/forgot-password",
+//   },
+//   {
+//     element: <Profile />,
+//     path: "/profile",
+//   },
+// ]);
 
 const theme = createTheme();
 
 function App() {
   return (
-    // eslint-disable-next-line react/jsx-no-undef
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <Logo />
+          <Routes>
+            <Route path="/" element={<Test />} />
+            <Route path="/sign-up" element={<Form />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </ThemeProvider>
+      </Provider>
+    </BrowserRouter>
   );
 }
 
