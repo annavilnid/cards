@@ -1,25 +1,29 @@
-import { SignUp } from "@/features/signUp/SignUp";
-import styled from "styled-components";
-import { Header } from "@/features/header/Header";
-
+import { SignUp } from "@/features/auth/SignUp";
+import { SignIn } from "@/features/auth/SignIn";
+import { useLocation } from "react-router-dom";
+import { Title } from "@/features/title/Title";
+import { CustomLink } from "@/features/link/CustomLink";
+import { FormWrapper, StyledText } from "./FormStyle";
 export const Form = () => {
-  const FormWrapper = styled.div`
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    max-width: 413px;
-    background: #ffffff;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
-    border-radius: 2px;
-  `;
+  const location = useLocation();
 
   return (
     <FormWrapper>
-      <Header value={"Sign Up"} />
-      <SignUp />
+      {location.pathname === "/sign-up" ? (
+        <>
+          <Title>Sign Up</Title>
+          <SignUp />
+          <StyledText>Already have an account?</StyledText>
+          <CustomLink to="/sign-in">Sign In</CustomLink>
+        </>
+      ) : location.pathname === "/sign-in" ? (
+        <>
+          <Title>Sign In</Title>
+          <SignIn />
+          <StyledText>Don't have an account?</StyledText>
+          <CustomLink to="/sign-up">Sign Up</CustomLink>
+        </>
+      ) : null}
     </FormWrapper>
   );
 };

@@ -6,12 +6,13 @@ import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } fro
 import { createTheme, ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
 import { store } from "@/app/store";
-import { SignUp_t } from "@/features/signUp/SignUp_t";
-import { SignIn } from "@/features/signIn/SignIn";
 import { ForgotPassword } from "@/features/setNewPassword/ForgotPassword";
 import { Profile } from "@/features/profile/Profile";
-import { Logo } from "@/features/logo/Logo";
 import { Form } from "@/features/form/Form";
+import PopoverDemo from "@/features/del/ProverDemo";
+import CheckboxDemo from "@/features/del/ProverDemo";
+import { GlobalStyles } from "@/common/styles/GlobalStyles";
+import { Header } from "@/features/header/Header";
 export const Test = () => {
   const isLoading = useAppSelector((state) => state.app.isLoading);
   const dispatch = useAppDispatch();
@@ -99,12 +100,13 @@ function App() {
   return (
     <BrowserRouter>
       <Provider store={store}>
+        <GlobalStyles />
         <ThemeProvider theme={theme}>
-          <Logo />
+          <Header />
           <Routes>
             <Route path="/" element={<Test />} />
             <Route path="/sign-up" element={<Form />} />
-            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-in" element={<Form />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/profile" element={<Profile />} />
           </Routes>

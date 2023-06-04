@@ -1,20 +1,19 @@
-import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { HeaderWrapper, Title, StyledButton } from "./HeaderStyles";
 
-type TitlePropsType = {
-  value: string;
-};
+export function Header() {
+  const navigate = useNavigate();
 
-const TitleWrapper = styled.h1<TitlePropsType>`
-  margin: 0;
-  padding: 0;
-  font-family: "Montserrat", sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 26px;
-  line-height: 32px;
-  color: #000000;
-`;
+  function onClickHandler() {
+    navigate("/sign-in");
+  }
 
-export function Header({ value }: TitlePropsType) {
-  return <TitleWrapper value={value}>Sign up</TitleWrapper>;
+  return (
+    <HeaderWrapper>
+      <Title>it-incubator</Title>
+      <StyledButton type="button" onClick={onClickHandler} className="button">
+        Sign In
+      </StyledButton>
+    </HeaderWrapper>
+  );
 }
