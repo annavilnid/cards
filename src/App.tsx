@@ -2,7 +2,7 @@ import { Counter } from "./features/counter/Counter";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { useEffect } from "react";
 import { appActions } from "@/app/AppSlice";
-import { BrowserRouter, createBrowserRouter, Route, RouterProvider, Routes } from "react-router-dom";
+import { HashRouter, createBrowserRouter, Route, RouterProvider, Routes, useRoutes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
 import { store } from "@/app/store";
@@ -98,7 +98,7 @@ const theme = createTheme();
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <GlobalStyles />
         <ThemeProvider theme={theme}>
@@ -112,7 +112,7 @@ function App() {
           </Routes>
         </ThemeProvider>
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
