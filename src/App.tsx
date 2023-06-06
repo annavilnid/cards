@@ -2,7 +2,7 @@ import { Counter } from "./features/counter/Counter";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { useEffect } from "react";
 import { appActions } from "@/app/AppSlice";
-import { HashRouter, createBrowserRouter, Route, RouterProvider, Routes, useRoutes } from "react-router-dom";
+import { HashRouter, Route, RouterProvider, Routes, useRoutes } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
 import { store } from "@/app/store";
@@ -115,5 +115,3 @@ function App() {
     </HashRouter>
   );
 }
-
-export default App;
