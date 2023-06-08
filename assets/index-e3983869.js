@@ -147,7 +147,7 @@ Error generating stack: `+i.message+`
     background-color: var(--blue-color);
     min-width: 113px;
   }
-`,qP="/react-vite-gh-pages/assets/header-logo-dac46514.svg";function ZP(){const e=qx();function t(){e("/form")}return q.jsxs(XP,{children:[q.jsx("img",{src:qP,alt:"Logo IT-Incubator"}),q.jsx(JP,{type:"button",onClick:t,className:"button",children:"Form"})]})}const eR=nl.div`
+`,qP="/cards/assets/header-logo-dac46514.svg";function ZP(){const e=qx();function t(){e("/form")}return q.jsxs(XP,{children:[q.jsx("img",{src:qP,alt:"Logo IT-Incubator"}),q.jsx(JP,{type:"button",onClick:t,className:"button",children:"Form"})]})}const eR=nl.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -159,5 +159,5 @@ Error generating stack: `+i.message+`
   background: var(--wite-color);
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1), -1px -1px 2px rgba(0, 0, 0, 0.1);
   border-radius: 2px;
-`,tR=()=>q.jsx(eR,{children:q.jsx("h1",{children:"Form"})}),nR=()=>{const e=vy(n=>n.app.isLoading),t=gy();return b.useEffect(()=>{setTimeout(()=>{t(xE.setIsLoading({isLoading:!1}))},3e3)},[t]),q.jsxs("div",{className:"App",children:[e&&q.jsx("h1",{children:"Loader..."}),q.jsx(cx,{})]})},rR=[{path:"/",element:q.jsx(aR,{}),errorElement:q.jsx(sR,{}),children:[{to:"/test",element:q.jsx(nR,{})},{path:"/form",element:q.jsx(tR,{})}]}],oR=sP(),iR=gE(rR,{basename:"/react-vite-gh-pages/"});function lR(){return q.jsx(aS,{store:B2,children:q.jsx(cP,{theme:oR,children:q.jsx(dE,{router:iR})})})}function aR(){return q.jsxs(q.Fragment,{children:[q.jsx(ZP,{}),q.jsx(hE,{})]})}function sR(){const e=Yy();return console.error(e),q.jsxs("div",{id:"error-page",children:[q.jsx("h1",{children:"Oops!"}),q.jsx("p",{children:"Sorry, an unexpected error has occurred."}),q.jsx("p",{children:q.jsx("i",{children:e.statusText||e.message})})]})}_u.createRoot(document.getElementById("root")).render(q.jsx(_o.StrictMode,{children:q.jsx(lR,{})}));
-//# sourceMappingURL=index-4a6ee07d.js.map
+`,tR=()=>q.jsx(eR,{children:q.jsx("h1",{children:"Form"})}),nR=()=>{const e=vy(n=>n.app.isLoading),t=gy();return b.useEffect(()=>{setTimeout(()=>{t(xE.setIsLoading({isLoading:!1}))},3e3)},[t]),q.jsxs("div",{className:"App",children:[e&&q.jsx("h1",{children:"Loader..."}),q.jsx(cx,{})]})},rR=[{path:"/",element:q.jsx(aR,{}),errorElement:q.jsx(sR,{}),children:[{path:"/test",element:q.jsx(nR,{})},{path:"/form",element:q.jsx(tR,{})}]}],oR=sP();console.log(!1);console.log("/cards/");console.log("/cards/");const iR=gE(rR,{basename:"/cards/"});function lR(){return q.jsx(aS,{store:B2,children:q.jsx(cP,{theme:oR,children:q.jsx(dE,{router:iR})})})}function aR(){return q.jsxs(q.Fragment,{children:[q.jsx(ZP,{}),q.jsx(hE,{})]})}function sR(){const e=Yy();return console.error(e),q.jsxs("div",{id:"error-page",children:[q.jsx("h1",{children:"Oops!"}),q.jsx("p",{children:"Sorry, an unexpected error has occurred."}),q.jsx("p",{children:q.jsx("i",{children:e.statusText||e.message})})]})}_u.createRoot(document.getElementById("root")).render(q.jsx(_o.StrictMode,{children:q.jsx(lR,{})}));
+//# sourceMappingURL=index-e3983869.js.map
