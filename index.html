@@ -6,9 +6,7 @@
 <!--  <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
 <!--  <title>React Redux App</title>-->
 
-<!--  <script type="module" crossorigin src="/cards/assets/index-5001fb52.js"></script>
-  <link rel="stylesheet" href="/cards/assets/index-8175166b.css">
-</head>-->
+<!--</head>-->
 <!--<body>-->
 <!--<noscript>You need to enable JavaScript to run this app.</noscript>-->
 <!--<div id="root"></div>-->
@@ -21,13 +19,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!--  <link rel="icon" type="image/svg+xml" href="/vite.svg" />-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>React Redux App</title>
+  <title>React App</title>
 </head>
 <body>
-<noscript>You need to enable JavaScript to run this app.</noscript>
+<noscript>
+  You need to enable JavaScript to run this app.
+</noscript>
 <div id="root"></div>
-
+<script>
+  // Перенаправление на index.html для обработки роутинга
+  const pathSegments = window.location.pathname.split("/").filter(Boolean);
+  const path = pathSegments.length > 0 ? pathSegments[0] : "";
+  const redirectUrl = `/${path}/index.html`;
+  window.location.href = redirectUrl;
+</script>
 </body>
 </html>
