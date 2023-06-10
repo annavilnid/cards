@@ -29,19 +29,19 @@
 <div id="root"></div>
 
 <!-- Роутинг для SPA на GitHub Pages -->
-<script type="text/javascript">
-  // Редирект на правильный URL, если есть редирект в query string
-  (function(l) {
-    if (l.search[1] === '/') {
-      var decoded = l.search.slice(1).split('&').map(function(s) {
-        return s.replace(/~and~/g, '&');
-      }).join('?');
-      window.history.replaceState(null, null,
-        l.pathname.slice(0, -1) + decoded + l.hash
-      );
-    }
-  }(window.location));
-</script>
+<!--<script type="text/javascript">-->
+<!--  // Редирект на правильный URL, если есть редирект в query string-->
+<!--  (function(l) {-->
+<!--    if (l.search[1] === '/') {-->
+<!--      var decoded = l.search.slice(1).split('&').map(function(s) {-->
+<!--        return s.replace(/~and~/g, '&');-->
+<!--      }).join('?');-->
+<!--      window.history.replaceState(null, null,-->
+<!--        l.pathname.slice(0, -1) + decoded + l.hash-->
+<!--      );-->
+<!--    }-->
+<!--  }(window.location));-->
+<!--</script>-->
 
 <!-- Загрузка приложения -->
 
