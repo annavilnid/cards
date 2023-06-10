@@ -29,11 +29,16 @@
   Go back to the <a href="/">homepage</a>.
 </p>
 <script>
-  console.log('404')
-  // Redirect to homepage after a short delay
-  setTimeout(function() {
-    window.location.href = "/";
-  }, 3000);
+  // Check if the current URL is a GitHub Pages URL
+  var isGitHubPages = window.location.hostname.includes("github.io");
+
+  // Check if the current URL contains a path
+  var hasPath = window.location.pathname !== "/";
+
+  if (isGitHubPages && hasPath) {
+    // Redirect to homepage without reloading the page
+    window.history.pushState({}, "", "/");
+  }
 </script>
 </body>
 </html>
