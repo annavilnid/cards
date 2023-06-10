@@ -12,7 +12,16 @@
 <noscript>You need to enable JavaScript to run this app.</noscript>
 <div id="root"></div>
 
-<!--<script type="module" src="/404.html"></script>-->
-<script>console.log("index")</script>
+
+<script>
+  (() => {
+    console.log("index")
+    const redirect = sessionStorage.redirect;
+    delete sessionStorage.redirect;
+    if (redirect && redirect !== location.href) {
+      history.replaceState(null, null, redirect);
+    }
+  })();
+</script>
 </body>
 </html>
