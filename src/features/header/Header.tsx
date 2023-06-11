@@ -6,14 +6,14 @@ export function Header() {
   const navigate = useNavigate();
 
   function onClickHandler() {
-    navigate("/form");
+    navigate("/sign-in");
   }
 
   return (
     <HeaderWrapper>
       <img src={logo} alt="Logo IT-Incubator" />
       <StyledButton type="button" onClick={onClickHandler} className="button">
-        Form
+        Sign in
       </StyledButton>
     </HeaderWrapper>
   );

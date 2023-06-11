@@ -42,79 +42,6 @@ export const Test = () => {
   );
 };
 
-// const routes = [
-//   {
-//     path: "/",
-//     element: <Layout />,
-//     errorElement: <ErrorPage />,
-//     children: [
-//       { index: true, element: <Test /> },
-//       {
-//         element: <Form />,
-//         children: [
-//           {
-//             path: "sign-in",
-//             element: (
-//               <>
-//                 <Title>Sign In</Title>
-//                 <SignIn />
-//                 <CustomLink to="/forgot-password">Forgot Password?</CustomLink>
-//                 <StyledText>Don't have an account?</StyledText>
-//                 <CustomLink to="/sign-up">Sign Up</CustomLink>
-//               </>
-//             ),
-//           },
-//           {
-//             path: "sign-up",
-//             element: (
-//               <>
-//                 <Title>Sign Up</Title>
-//                 <SignUp />
-//                 <StyledText>Already have an account?</StyledText>
-//                 <CustomLink to="/sign-in">Sign In</CustomLink>
-//               </>
-//             ),
-//           },
-//           {
-//             path: "forgot-password",
-//             element: (
-//               <>
-//                 <Title>Forgot Password</Title>
-//                 <ForgotPassword />
-//                 <Message value={infoMessage.forgotPassword} />
-//               </>
-//             ),
-//           },
-//           {
-//             path: "check-email",
-//             element: (
-//               <>
-//                 <Title>Check Email</Title>
-//                 <img src={logo} alt="Logo check email" />
-//                 <Message value={infoMessage.checkEmail} />
-//                 <CustomLink to="/sign-in">{buttonText.checkEmail}</CustomLink>
-//               </>
-//             ),
-//           },
-//           {
-//             path: "set-new-password",
-//             element: (
-//               <>
-//                 <Title>Create new password</Title>
-//                 <SetNewPassword />
-//               </>
-//             ),
-//           },
-//         ],
-//       },
-//     ],
-//   },
-// ];
-//
-// const router = createBrowserRouter(routes, {
-//   basename: "/cards",
-// });
-
 const router = createBrowserRouter(
   [
     {
@@ -122,14 +49,90 @@ const router = createBrowserRouter(
       element: <Layout />,
       errorElement: <ErrorPage />,
       children: [
-        { path: "/test", element: <Test /> },
-        { path: "/form", element: <Form /> },
-        { path: "/yo", element: <h1>yo</h1> },
+        { index: true, element: <Test /> },
+        {
+          element: <Form />,
+          children: [
+            {
+              path: "sign-in",
+              element: (
+                <>
+                  <Title>Sign In</Title>
+                  <SignIn />
+                  <CustomLink to="/forgot-password">Forgot Password?</CustomLink>
+                  <StyledText>Don't have an account?</StyledText>
+                  <CustomLink to="/sign-up">Sign Up</CustomLink>
+                </>
+              ),
+            },
+            {
+              path: "sign-up",
+              element: (
+                <>
+                  <Title>Sign Up</Title>
+                  <SignUp />
+                  <StyledText>Already have an account?</StyledText>
+                  <CustomLink to="/sign-in">Sign In</CustomLink>
+                </>
+              ),
+            },
+            {
+              path: "forgot-password",
+              element: (
+                <>
+                  <Title>Forgot Password</Title>
+                  <ForgotPassword />
+                  <Message value={infoMessage.forgotPassword} />
+                </>
+              ),
+            },
+            {
+              path: "check-email",
+              element: (
+                <>
+                  <Title>Check Email</Title>
+                  <img src={logo} alt="Logo check email" />
+                  <Message value={infoMessage.checkEmail} />
+                  <CustomLink to="/sign-in">{buttonText.checkEmail}</CustomLink>
+                </>
+              ),
+            },
+            {
+              path: "set-new-password",
+              element: (
+                <>
+                  <Title>Create new password</Title>
+                  <SetNewPassword />
+                </>
+              ),
+            },
+          ],
+        },
       ],
     },
   ],
   { basename: "/cards" }
 );
+
+// const router = createBrowserRouter(routes, {
+//   basename: "/cards",
+// });
+
+// const router = createBrowserRouter(
+//   [
+//     {
+//       path: "/",
+//       element: <Layout />,
+//       errorElement: <ErrorPage />,
+//       children: [
+//         { path: "/test", element: <Test /> },
+//         { path: "/form", element: <Form /> },
+//         { path: "/yo", element: <h1>yo</h1> },
+//       ],
+//     },
+//   ],
+//   { basename: "/cards" }
+// );
 
 const theme = createTheme();
 export function App() {

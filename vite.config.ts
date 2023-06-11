@@ -15,6 +15,12 @@ export default defineConfig({
   build: {
     outDir: "build",
     sourcemap: true,
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+        "404": path.resolve(__dirname, "404.html"),
+      },
+    },
   },
   test: {
     globals: true,
