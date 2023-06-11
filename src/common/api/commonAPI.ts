@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const AuthInstance = axios.create({
-  baseURL: "http://localhost:7542/2.0/auth/",
+  baseURL: "https://neko-back.herokuapp.com/2.0/auth/",
   withCredentials: true,
 });
 
