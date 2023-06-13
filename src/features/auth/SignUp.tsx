@@ -15,6 +15,7 @@ import {
   StyledEyeIcon,
   StyledButton,
 } from "./SignUpStyles";
+import { buttonText } from "@/assets/constants/contstanse";
 
 const schema = yup
   .object({
@@ -103,8 +104,8 @@ export const SignUp = () => {
         <StyledError>{errors.confirmPassword?.message}</StyledError>
         {/*{watchPassword !== watchConfirmPassword && <StyledError>Passwords do not match</StyledError>}*/}
 
-        <StyledButton type="submit" className="button">
-          Sign Up
+        <StyledButton type="submit" className="button" margin={"30px 0 0 0"}>
+          {buttonText.signUp}
         </StyledButton>
       </StyledForm>
     </div>

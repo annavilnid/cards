@@ -3,8 +3,9 @@ import { StyledText } from "@/features/Message/MessageStyle";
 
 type MessageType = {
   value: string;
+  margin?: string;
 };
 
-export const Message: FC<MessageType> = ({ value }) => {
-  return <StyledText>{value}</StyledText>;
+export const Message: FC<MessageType> = ({ value, margin }) => {
+  return <StyledText margin={margin}>{value}</StyledText>;
 };

@@ -8,6 +8,8 @@ type TitlePropsType = {
 
 export const TitleWrapper = styled.h1<TitlePropsType>`
   ${resetMarginsAndPaddings};
+  font-family: "Montserrat", sans-serif;
+  padding: 35px 0;
   font-style: normal;
   font-weight: 600;
   font-size: 26px;

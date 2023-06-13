@@ -16,7 +16,7 @@ import { CustomLink } from "@/features/link/CustomLink";
 import { StyledText } from "./AppStyles";
 import { ForgotPassword } from "@/features/auth/ForgotPassword";
 import { Message } from "@/features/Message/Message";
-import { buttonText, infoMessage } from "@/assets/constants/contstanse";
+import { buttonText, infoMessage, title, linkText } from "@/assets/constants/contstanse";
 import logo from "@/assets/check-email.svg";
 import { SetNewPassword } from "@/features/auth/SetNewPassword";
 
@@ -57,11 +57,12 @@ const router = createBrowserRouter(
               path: "sign-in",
               element: (
                 <>
-                  <Title>Sign In</Title>
+                  <Title>{title.signIn}</Title>
                   <SignIn />
-                  <CustomLink to="/forgot-password">Forgot Password?</CustomLink>
-                  <StyledText>Don't have an account?</StyledText>
-                  <CustomLink to="/sign-up">Sign Up</CustomLink>
+                  <Message value={infoMessage.signIn} margin={"30px 0 15px"} />
+                  <CustomLink to="/sign-up" margin={"0 0 48px"} textDecorationLine={"underline"}>
+                    {linkText.signUp}
+                  </CustomLink>
                 </>
               ),
             },
@@ -69,7 +70,7 @@ const router = createBrowserRouter(
               path: "sign-up",
               element: (
                 <>
-                  <Title>Sign Up</Title>
+                  <Title>{title.signUp}</Title>
                   <SignUp />
                   <StyledText>Already have an account?</StyledText>
                   <CustomLink to="/sign-in">Sign In</CustomLink>
@@ -80,7 +81,7 @@ const router = createBrowserRouter(
               path: "forgot-password",
               element: (
                 <>
-                  <Title>Forgot Password</Title>
+                  <Title>{title.forgotPassword}</Title>
                   <ForgotPassword />
                   <Message value={infoMessage.forgotPassword} />
                 </>
@@ -90,7 +91,7 @@ const router = createBrowserRouter(
               path: "check-email",
               element: (
                 <>
-                  <Title>Check Email</Title>
+                  <Title>{title.checkEmail}</Title>
                   <img src={logo} alt="Logo check email" />
                   <Message value={infoMessage.checkEmail} />
                   <CustomLink to="/sign-in">{buttonText.checkEmail}</CustomLink>
@@ -98,10 +99,10 @@ const router = createBrowserRouter(
               ),
             },
             {
-              path: "set-new-password",
+              path: "set-new-password/:token",
               element: (
                 <>
-                  <Title>Create new password</Title>
+                  <Title>{title.setNewPassword}</Title>
                   <SetNewPassword />
                 </>
               ),

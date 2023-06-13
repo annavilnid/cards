@@ -4,7 +4,7 @@ import { colorVariables, resetMarginsAndPaddings } from "@/common/styles/commonS
 import { CustomButton } from "@/features/button/Button";
 
 const commonInputStyles = `
-  min-height: 26px;
+  min-height: 30px;
   width: 347px;
   border: none;
   box-sizing: border-box;

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { colorVariables, resetMarginsAndPaddings } from "@/common/styles/commonStyles";
 
 const commonInputStyles = `
-  min-height: 26px;
+  min-height: 30px;
   width: 347px;
   border: none;
   box-sizing: border-box;
@@ -34,6 +34,11 @@ export const StyledWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: start;
+`;
+
+export const StyledContainer = styled.div`
+  display: flex;
+  align-self: start;
 `;
 
 export const StyledForm = styled.form`
@@ -89,6 +94,7 @@ export const StyledButton = styled(CustomButton)`
   &.button {
     ${colorVariables};
     background-color: var(--blue-color);
+    margin: 70px 0 0 0;
     min-width: 347px;
   }
 `;

@@ -1,7 +1,7 @@
 import { useAppDispatch } from "@/app/hooks";
 import { authThunks } from "@/features/auth/authSlice";
 import { RootState } from "@/app/store";
-import { useState } from "react";
+import React, { useState } from "react";
 import { SubmitHandler, useForm, FormProvider, useFormContext } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -19,7 +19,10 @@ import {
   StyledInput,
   StyledInputWithPassword,
   StyledEyeIcon,
+  StyledContainer,
 } from "./SignInStyles";
+import { buttonText, labelText, linkText } from "@/assets/constants/contstanse";
+import { CustomLink } from "@/features/link/CustomLink";
 // import * as Checkbox from "@radix-ui/react-checkbox";
 // import { CheckIcon } from "@radix-ui/react-icons";
 
@@ -69,33 +72,43 @@ export const SignIn = () => {
 
   return (
     <FormProvider {...methods}>
-      <div>
-        <StyledForm onSubmit={handleSubmit(onSubmit)}>
-          <StyledLabel htmlFor="email">Email </StyledLabel>
-          <StyledInput type="text" {...register("email")} />
-          <StyledError>{errors.email?.message}</StyledError>
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <StyledLabel htmlFor="email">{labelText.email}</StyledLabel>
+        <StyledInput type="text" {...register("email")} />
+        <StyledError>{errors.email?.message}</StyledError>
 
-          <StyledLabel htmlFor="password">Password </StyledLabel>
-          <StyledWrapper>
-            <StyledInputWithPassword
-              type={passwordShown ? "text" : "password"}
-              {...register("password")}
-              className={passwordShown ? "password-visible" : "password-hidden"}
-            />
-            <StyledEyeIcon icon={eyeIconPassword} onClick={togglePasswordVisibility} />
-          </StyledWrapper>
-          <StyledError>{errors.password?.message}</StyledError>
+        <StyledLabel htmlFor="password">{labelText.password}</StyledLabel>
+        <StyledWrapper>
+          <StyledInputWithPassword
+            type={passwordShown ? "text" : "password"}
+            {...register("password")}
+            className={passwordShown ? "password-visible" : "password-hidden"}
+          />
+          <StyledEyeIcon icon={eyeIconPassword} onClick={togglePasswordVisibility} />
+        </StyledWrapper>
+        <StyledError>{errors.password?.message}</StyledError>
 
-          <div style={{ display: "flex", alignItems: "center" }}>
-            <input type="checkbox" {...register("rememberMe")} />
-            <label htmlFor="rememberMe">Remember me</label>
-          </div>
+        <StyledContainer>
+          <input type="checkbox" {...register("rememberMe")} />
+          <label htmlFor="rememberMe">{labelText.rememberMe}</label>
+        </StyledContainer>
 
-          <StyledButton type="submit" className="button">
-            Sign In
-          </StyledButton>
-        </StyledForm>
-      </div>
+        <CustomLink
+          to="/forgot-password"
+          margin={"30px 0 0 0"}
+          alignSelf={"end"}
+          fontWeight={"500"}
+          color={"var(--black-color)"}
+          fontSize={"14px"}
+          lineHeight={"1.2"}
+        >
+          {linkText.forgotPassword}
+        </CustomLink>
+
+        <StyledButton type="submit" className="button">
+          {buttonText.signIn}
+        </StyledButton>
+      </StyledForm>
     </FormProvider>
   );
 };

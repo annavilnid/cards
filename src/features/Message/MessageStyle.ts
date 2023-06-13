@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { colorVariables, resetMarginsAndPaddings } from "@/common/styles/commonStyles";
 
-export const StyledText = styled.p`
+export const StyledText = styled.p<{ margin?: string }>`
   ${resetMarginsAndPaddings};
   font-style: normal;
   font-weight: 600;
@@ -11,4 +11,6 @@ export const StyledText = styled.p`
   ${colorVariables};
   color: var(--black-color);
   opacity: 0.5;
+  //margin: 200px 0;
+  margin: ${({ margin }) => margin || "0"};
 `;

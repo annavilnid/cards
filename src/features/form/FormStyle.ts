@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { colorVariables } from "@/common/styles/commonStyles";
 
 export const FormWrapper = styled.div`
-  margin: 0 auto;
+  margin: 4.7% auto;
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -4,9 +4,9 @@ import { Button } from "@/common/styles/commonStyles";
 type ButtonPropsType = {
   className?: string;
   children: ReactNode;
-  background?: string;
+  // background?: string;
   onClick?: () => void;
-  minWidth?: string;
+  // minWidth?: string;
   type: "button" | "submit" | "reset";
 };
 
