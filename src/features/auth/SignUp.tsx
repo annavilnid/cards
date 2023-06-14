@@ -104,7 +104,7 @@ export const SignUp = () => {
         <StyledError>{errors.confirmPassword?.message}</StyledError>
         {/*{watchPassword !== watchConfirmPassword && <StyledError>Passwords do not match</StyledError>}*/}
 
-        <StyledButton type="submit" className="button" margin={"30px 0 0 0"}>
+        <StyledButton type="submit" className="button">
           {buttonText.signUp}
         </StyledButton>
       </StyledForm>

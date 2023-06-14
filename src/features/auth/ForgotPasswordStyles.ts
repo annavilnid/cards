@@ -1,7 +1,7 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styled from "styled-components";
-import { colorVariables, resetMarginsAndPaddings } from "@/common/styles/commonStyles";
 import { CustomButton } from "@/features/button/Button";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { colorVariables, resetMarginsAndPaddings } from "@/common/styles/commonStyles";
 
 const commonInputStyles = `
   min-height: 30px;
@@ -21,12 +21,14 @@ const commonInputStyles = `
 const commonFontStyles = `
     font-style: normal
     font-weight: 400;
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.5;
 `;
 
 export const StyledInput = styled.input`
-  ${commonInputStyles}
+  ${commonInputStyles};
+  ${commonFontStyles};
+  margin: 19px 0 0;
 `;
 
 export const StyledWrapper = styled.div`
@@ -34,6 +36,11 @@ export const StyledWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: start;
+`;
+
+export const StyledContainer = styled.div`
+  display: flex;
+  align-self: start;
 `;
 
 export const StyledForm = styled.form`
@@ -62,20 +69,11 @@ export const StyledInputWithPassword = styled.input`
     text-shadow: 0 0 0 #000000;
 `;
 
-export const StyledLabel = styled.label`
-  padding: 4px 0 0 0;
+export const StyledError = styled.p`
+  min-height: 20px;
+  ${resetMarginsAndPaddings};
   align-self: start;
   ${commonFontStyles};
-  ${colorVariables};
-  color: var(--black-color);
-  opacity: 0.5;
-`;
-
-export const StyledError = styled.p`
-  ${resetMarginsAndPaddings};
-  min-height: 20px;
-  align-self: start;
-  ${commonFontStyles}
   ${colorVariables};
   color: var(--red-color);
 `;
@@ -89,7 +87,7 @@ export const StyledButton = styled(CustomButton)`
   &.button {
     ${colorVariables};
     background-color: var(--blue-color);
+    margin: 70px 0 0 0;
     min-width: 347px;
-    margin: 38px 0 0 0;
   }
 `;

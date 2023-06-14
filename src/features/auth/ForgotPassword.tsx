@@ -1,15 +1,17 @@
 import { useAppDispatch } from "@/app/hooks";
 import { authThunks } from "@/features/auth/authSlice";
 import { RootState } from "@/app/store";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SubmitHandler, useForm, FormProvider, useFormContext } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { StyledForm, StyledError, StyledLabel, StyledButton, StyledInput } from "./SignInStyles";
+import { StyledForm, StyledError, StyledButton, StyledInput } from "./ForgotPasswordStyles";
 import { useSelector } from "react-redux";
 import { appActions } from "@/app/AppSlice";
 import { useNavigate } from "react-router-dom";
+import { buttonText, infoMessage } from "@/assets/constants/contstanse";
+import { Message } from "@/features/Message/Message";
 
 const schema = yup.object({
   email: yup.string().email("Please enter a valid email address in the email field").required("Email is required"),
@@ -52,12 +54,14 @@ export const ForgotPassword = () => {
     <FormProvider {...methods}>
       <div>
         <StyledForm onSubmit={handleSubmit(onSubmit)}>
-          <StyledLabel htmlFor="email">Email </StyledLabel>
-          <StyledInput type="text" {...register("email")} />
+          {/*<StyledLabel htmlFor="email">Email </StyledLabel>*/}
+          <StyledInput type="text" {...register("email")} placeholder="Email" />
           <StyledError>{errors.email?.message}</StyledError>
 
+          <Message value={infoMessage.forgotPasswordOne} textAlign={"left"} />
+
           <StyledButton type="submit" className="button">
-            Forgot Password
+            {buttonText.forgotPassword}
           </StyledButton>
         </StyledForm>
       </div>

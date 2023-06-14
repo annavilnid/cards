@@ -15,7 +15,6 @@ export const colorVariables = css`
 `;
 
 export const Button = styled.button`
-  
   padding: 8px 28px;
   box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   border-radius: 30px;

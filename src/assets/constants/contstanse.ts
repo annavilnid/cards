@@ -9,7 +9,8 @@ type ButtonTextType = {
 type InfoMessageType = {
   signIn: string;
   signUp: string;
-  forgotPassword: string;
+  forgotPasswordOne: string;
+  forgotPasswordTwo: string;
   checkEmail: string;
   setNewPassword: string;
 };
@@ -20,6 +21,7 @@ type TitleType = {
   forgotPassword: string;
   checkEmail: string;
   setNewPassword: string;
+  profile: string;
 };
 
 type LinkType = {
@@ -40,7 +42,8 @@ type LabelType = {
 export const infoMessage: InfoMessageType = {
   signIn: "Don't have an account?",
   signUp: "Already have an account?",
-  forgotPassword: "Enter your email address and we will send you further instructions",
+  forgotPasswordOne: "Enter your email address and we will send you further instructions",
+  forgotPasswordTwo: "Did you remember your password?",
   checkEmail: "We’ve sent an Email with instructions to example@mail.com",
   setNewPassword: "Create new password and we will send you further instructions to email",
 };
@@ -59,6 +62,7 @@ export const title: TitleType = {
   forgotPassword: "Forgot your password?",
   checkEmail: "Check Email",
   setNewPassword: "Create new password",
+  profile: "Personal Information",
 };
 
 export const linkText: LinkType = {

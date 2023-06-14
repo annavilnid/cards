@@ -1,5 +1,7 @@
 import { useAppDispatch } from "@/app/hooks";
 import { authThunks } from "@/features/auth/authSlice";
+import { title } from "@/assets/constants/contstanse";
+import { Title } from "@/features/title/Title";
 
 export const Profile = () => {
   const dispatch = useAppDispatch();
@@ -18,9 +20,9 @@ export const Profile = () => {
 
   return (
     <div>
-      <h1>Profile</h1>
-      <button onClick={getProfileHandler}>getProfile</button>
-      <button onClick={changeDataHandler}>changeData</button>
+      <Title>{title.profile}</Title>
+      {/*<button onClick={getProfileHandler}>getProfile</button>*/}
+      {/*<button onClick={changeDataHandler}>changeData</button>*/}
     </div>
   );
 };

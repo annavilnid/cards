@@ -19,6 +19,7 @@ import { Message } from "@/features/Message/Message";
 import { buttonText, infoMessage, title, linkText } from "@/assets/constants/contstanse";
 import logo from "@/assets/check-email.svg";
 import { SetNewPassword } from "@/features/auth/SetNewPassword";
+import { Profile } from "@/features/profile/Profile";
 
 export const Test = () => {
   const isLoading = useAppSelector((state) => state.app.isLoading);
@@ -72,8 +73,10 @@ const router = createBrowserRouter(
                 <>
                   <Title>{title.signUp}</Title>
                   <SignUp />
-                  <StyledText>Already have an account?</StyledText>
-                  <CustomLink to="/sign-in">Sign In</CustomLink>
+                  <Message value={infoMessage.signUp} margin={"30px 0 15px"} />
+                  <CustomLink to="/sign-in" margin={"0 0 48px"} textDecorationLine={"underline"}>
+                    {linkText.signIn}
+                  </CustomLink>
                 </>
               ),
             },
@@ -83,7 +86,10 @@ const router = createBrowserRouter(
                 <>
                   <Title>{title.forgotPassword}</Title>
                   <ForgotPassword />
-                  <Message value={infoMessage.forgotPassword} />
+                  <Message value={infoMessage.forgotPasswordTwo} margin={"30px 0 15px"} />
+                  <CustomLink to="/sign-in" margin={"0 0 48px"} textDecorationLine={"underline"}>
+                    {linkText.tryLoggingIn}
+                  </CustomLink>
                 </>
               ),
             },
@@ -93,19 +99,24 @@ const router = createBrowserRouter(
                 <>
                   <Title>{title.checkEmail}</Title>
                   <img src={logo} alt="Logo check email" />
-                  <Message value={infoMessage.checkEmail} />
+                  <Message value={infoMessage.checkEmail} margin={"30px 0 15px"} />
                   <CustomLink to="/sign-in">{buttonText.checkEmail}</CustomLink>
                 </>
               ),
             },
             {
-              path: "set-new-password/:token",
+              // path: "set-new-password/:token",
+              path: "set-new-password",
               element: (
                 <>
                   <Title>{title.setNewPassword}</Title>
                   <SetNewPassword />
                 </>
               ),
+            },
+            {
+              path: "profile",
+              element: <Profile />,
             },
           ],
         },
