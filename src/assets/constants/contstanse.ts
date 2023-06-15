@@ -35,6 +35,7 @@ type LabelType = {
   email: string;
   password: string;
   rememberMe: string;
+  confirmPassword: string;
 };
 
 //TODO
@@ -75,5 +76,6 @@ export const linkText: LinkType = {
 export const labelText: LabelType = {
   email: "Email",
   password: "Password",
+  confirmPassword: "Confirm Password",
   rememberMe: "Remember me",
 };

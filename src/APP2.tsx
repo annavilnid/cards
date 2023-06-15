@@ -1,5 +1,5 @@
 import { Counter } from "./features/counter/Counter";
-import { createBrowserRouter, createHashRouter, RouterProvider, Outlet, useRouteError } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet, useRouteError, useNavigate } from "react-router-dom";
 import "./App.css";
 import { store } from "@/app/store";
 import { Provider } from "react-redux";
@@ -13,7 +13,6 @@ import { SignUp } from "@/features/auth/SignUp";
 import { SignIn } from "@/features/auth/SignIn";
 import { Title } from "@/features/title/Title";
 import { CustomLink } from "@/features/link/CustomLink";
-import { StyledText } from "./AppStyles";
 import { ForgotPassword } from "@/features/auth/ForgotPassword";
 import { Message } from "@/features/Message/Message";
 import { buttonText, infoMessage, title, linkText } from "@/assets/constants/contstanse";
@@ -23,7 +22,9 @@ import { Profile } from "@/features/profile/Profile";
 
 export const Test = () => {
   const isLoading = useAppSelector((state) => state.app.isLoading);
+  const userProfile = useAppSelector((state) => state.auth.profile);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setTimeout(() => {
@@ -34,6 +35,13 @@ export const Test = () => {
       );
     }, 3000);
   }, [dispatch]);
+
+  useEffect(() => {
+    console.log(userProfile);
+    if (userProfile) {
+      navigate("/profile");
+    }
+  }, [userProfile, navigate]);
 
   return (
     <div className="App">
@@ -130,22 +138,6 @@ const router = createBrowserRouter(
 //   basename: "/cards",
 // });
 
-// const router = createBrowserRouter(
-//   [
-//     {
-//       path: "/",
-//       element: <Layout />,
-//       errorElement: <ErrorPage />,
-//       children: [
-//         { path: "/test", element: <Test /> },
-//         { path: "/form", element: <Form /> },
-//         { path: "/yo", element: <h1>yo</h1> },
-//       ],
-//     },
-//   ],
-//   { basename: "/cards" }
-// );
-
 const theme = createTheme();
 export function App() {
   return (
@@ -165,6 +157,7 @@ function Layout() {
     </>
   );
 }
+
 function ErrorPage() {
   const error: any = useRouteError();
   console.error(error);

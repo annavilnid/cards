@@ -15,7 +15,7 @@ import {
   StyledEyeIcon,
   StyledButton,
 } from "./SignUpStyles";
-import { buttonText } from "@/assets/constants/contstanse";
+import { buttonText, labelText } from "@/assets/constants/contstanse";
 
 const schema = yup
   .object({
@@ -77,27 +77,29 @@ export const SignUp = () => {
   return (
     <div>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <StyledLabel htmlFor="email">Email </StyledLabel>
+        <StyledLabel htmlFor="email">{labelText.email} </StyledLabel>
         <StyledInput type="text" {...register("email")} />
         <StyledError>{errors.email?.message}</StyledError>
 
-        <StyledLabel htmlFor="password">Password </StyledLabel>
+        <StyledLabel htmlFor="password">{labelText.password} </StyledLabel>
         <StyledWrapper>
           <StyledInputWithPassword
             type={passwordShown ? "text" : "password"}
             {...register("password")}
             className={passwordShown ? "password-visible" : "password-hidden"}
+            autoComplete="new-password"
           />
           <StyledEyeIcon icon={eyeIconPassword} onClick={togglePasswordVisibility} />
         </StyledWrapper>
         <StyledError>{errors.password?.message}</StyledError>
 
-        <StyledLabel htmlFor="confirmPassword">Confirm Password </StyledLabel>
+        <StyledLabel htmlFor="confirmPassword">{labelText.confirmPassword} </StyledLabel>
         <StyledWrapper>
           <StyledInputWithPassword
             type={confirmPasswordShown ? "text" : "password"}
             {...register("confirmPassword")}
             className={confirmPasswordShown ? "password-visible" : "password-hidden"}
+            autoComplete="new-password"
           />
           <StyledEyeIcon icon={eyeIconConfirmPassword} onClick={toggleConfirmPasswordVisibility} />
         </StyledWrapper>

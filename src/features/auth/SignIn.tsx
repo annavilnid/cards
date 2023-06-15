@@ -23,6 +23,7 @@ import {
 } from "./SignInStyles";
 import { buttonText, labelText, linkText } from "@/assets/constants/contstanse";
 import { CustomLink } from "@/features/link/CustomLink";
+import { FormInput } from "@/features/input/FormInput";
 // import * as Checkbox from "@radix-ui/react-checkbox";
 // import { CheckIcon } from "@radix-ui/react-icons";
 
@@ -73,9 +74,13 @@ export const SignIn = () => {
   return (
     <FormProvider {...methods}>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <StyledLabel htmlFor="email">{labelText.email}</StyledLabel>
-        <StyledInput type="text" {...register("email")} />
-        <StyledError>{errors.email?.message}</StyledError>
+        <FormInput
+          label={labelText.email}
+          name="email"
+          register={register}
+          errors={errors.email}
+          inputProps={{ type: "text" }}
+        />
 
         <StyledLabel htmlFor="password">{labelText.password}</StyledLabel>
         <StyledWrapper>
@@ -83,6 +88,7 @@ export const SignIn = () => {
             type={passwordShown ? "text" : "password"}
             {...register("password")}
             className={passwordShown ? "password-visible" : "password-hidden"}
+            autoComplete="on"
           />
           <StyledEyeIcon icon={eyeIconPassword} onClick={togglePasswordVisibility} />
         </StyledWrapper>

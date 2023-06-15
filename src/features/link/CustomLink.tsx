@@ -3,25 +3,29 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { colorVariables, resetMarginsAndPaddings } from "@/common/styles/commonStyles";
 
+//TODO
+//Уточнить про alignself, textdecorationline, lineheight
+//
+
 const StyledLink = styled(Link)<{
   margin?: string;
-  alignSelf?: string;
+  alignself?: string;
   fontWeight?: string;
   color?: string;
-  textDecorationLine?: string;
+  textdecorationline?: string;
   fontSize?: string;
-  lineHeight?: string;
+  lineheight?: string;
 }>`
   ${resetMarginsAndPaddings};
   font-family: "Montserrat", sans-serif;
   font-size: ${({ fontSize }) => fontSize || "16px"};
-  line-height: ${({ lineHeight }) => lineHeight || "16px"};
+  line-height: ${({ lineheight }) => lineheight || "16px"};
   margin: ${({ margin }) => margin || "0"};
   font-weight: ${({ fontWeight }) => fontWeight || "600"};
-  align-self: ${({ alignSelf }) => alignSelf || "center"};
+  align-self: ${({ alignself }) => alignself || "center"};
   ${colorVariables};
   color: ${({ color }) => color || "var(--blue-color)"};
-  text-decoration-line: ${({ textDecorationLine }) => textDecorationLine || "none"};
+  text-decoration-line: ${({ textdecorationline }) => textdecorationline || "none"};
   transition: opacity 0.3s ease-in-out;
 
   &:hover {
@@ -57,11 +61,11 @@ export const CustomLink: React.FC<LinkProps> = ({
       to={to}
       margin={margin}
       color={color}
-      alignSelf={alignSelf}
+      alignself={alignSelf}
       fontWeight={fontWeight}
-      textDecorationLine={textDecorationLine}
+      textdecorationline={textDecorationLine}
       fontSize={fontSize}
-      lineHeight={lineHeight}
+      lineheight={lineHeight}
     >
       {children}
     </StyledLink>
