@@ -1,43 +1,34 @@
 import { useAppDispatch } from "@/app/hooks";
 import { authThunks } from "@/features/auth/authSlice";
 import React, { useState } from "react";
-import {
-  SubmitHandler,
-  useForm,
-  FormProvider,
-  useFormContext,
-} from "react-hook-form";
+import { SubmitHandler, useForm, FormProvider, useFormContext } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import * as yup from "yup";
 import {
   StyledForm,
+  StyledError,
+  StyledLabel,
   StyledWrapper,
   StyledButton,
+  StyledInput,
+  StyledInputWithPassword,
   StyledEyeIcon,
   StyledContainer,
-} from "@/common/styles/commonStyles";
+} from "./SignInStyles";
 import { buttonText, labelText, linkText } from "@/assets/constants/contstanse";
 import { CustomLink } from "@/features/link/CustomLink";
-import { FormInput } from "@/features/input/FormInput";
 // import * as Checkbox from "@radix-ui/react-checkbox";
 // import { CheckIcon } from "@radix-ui/react-icons";
 
 const schema = yup.object({
-  email: yup
-    .string()
-    .email("Please enter a valid email address in the email field")
-    .required("Email is required"),
+  email: yup.string().email("Please enter a valid email address in the email field").required("Email is required"),
   password: yup
     .string()
     .required("Password is required")
-    .test(
-      "password-length",
-      "Password must be at least 8 characters",
-      (value) => {
-        return !!value && value.length >= 8;
-      }
-    ),
+    .test("password-length", "Password must be at least 8 characters", (value) => {
+      return !!value && value.length >= 8;
+    }),
   rememberMe: yup.boolean(),
 });
 
@@ -77,27 +68,21 @@ export const SignIn = () => {
   return (
     <FormProvider {...methods}>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <FormInput
-          label={labelText.email}
-          type="text"
-          name="email"
-          register={register}
-          errors={errors}
-        />
+        <StyledLabel htmlFor="email">{labelText.email}</StyledLabel>
+        <StyledInput type="text" {...register("email")} />
+        <StyledError>{errors.email?.message}</StyledError>
 
+        <StyledLabel htmlFor="password">{labelText.password}</StyledLabel>
         <StyledWrapper>
-          <FormInput
-            label={labelText.password}
-            name="password"
+          <StyledInputWithPassword
             type={passwordShown ? "text" : "password"}
-            register={register}
-            errors={errors}
+            {...register("password")}
+            className={passwordShown ? "password-visible" : "password-hidden"}
+            autoComplete="on"
           />
-          <StyledEyeIcon
-            icon={eyeIconPassword}
-            onClick={togglePasswordVisibility}
-          />
+          <StyledEyeIcon icon={eyeIconPassword} onClick={togglePasswordVisibility} />
         </StyledWrapper>
+        <StyledError>{errors.password?.message}</StyledError>
 
         <StyledContainer>
           <input type="checkbox" {...register("rememberMe")} />
@@ -116,7 +101,7 @@ export const SignIn = () => {
           {linkText.forgotPassword}
         </CustomLink>
 
-        <StyledButton type="submit" className="button" margin="70px 0 0 0">
+        <StyledButton type="submit" className="button">
           {buttonText.signIn}
         </StyledButton>
       </StyledForm>

@@ -4,28 +4,35 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
-  StyledInput,
   StyledForm,
-  StyledLabel,
   StyledWrapper,
-  StyledInputWithPassword,
-  StyledError,
   StyledEyeIcon,
   StyledButton,
-} from "./SignUpStyles";
+} from "@/common/styles/commonStyles";
 import { buttonText, labelText } from "@/assets/constants/contstanse";
+import { FormInput } from "@/features/input/FormInput";
+
+// TODO
+// плохо работает валидация email, например anna@g пропускает
 
 const schema = yup
   .object({
-    email: yup.string().email("Please enter a valid email address in the email field").required("Email is required"),
+    email: yup
+      .string()
+      .email("Please enter a valid email address in the email field")
+      .required("Email is required"),
     password: yup
       .string()
       .required("Password is required")
-      .test("password-length", "Password must be at least 8 characters", (value) => {
-        return !!value && value.length >= 8;
-      }),
+      .test(
+        "password-length",
+        "Password must be at least 8 characters",
+        (value) => {
+          return !!value && value.length >= 8;
+        }
+      ),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password"), ""], "Passwords must match")
@@ -38,7 +45,8 @@ type FormData = yup.InferType<typeof schema>;
 export const SignUp = () => {
   const dispatch = useAppDispatch();
   const [passwordShown, setPasswordShown] = useState<boolean>(false);
-  const [confirmPasswordShown, setConfirmPasswordShown] = useState<boolean>(false);
+  const [confirmPasswordShown, setConfirmPasswordShown] =
+    useState<boolean>(false);
 
   const {
     register,
@@ -77,36 +85,43 @@ export const SignUp = () => {
   return (
     <div>
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <StyledLabel htmlFor="email">{labelText.email} </StyledLabel>
-        <StyledInput type="text" {...register("email")} />
-        <StyledError>{errors.email?.message}</StyledError>
+        <FormInput
+          label={labelText.email}
+          type="text"
+          name="email"
+          register={register}
+          errors={errors}
+        />
 
-        <StyledLabel htmlFor="password">{labelText.password} </StyledLabel>
         <StyledWrapper>
-          <StyledInputWithPassword
+          <FormInput
+            label={labelText.password}
+            name="password"
             type={passwordShown ? "text" : "password"}
-            {...register("password")}
-            className={passwordShown ? "password-visible" : "password-hidden"}
-            autoComplete="new-password"
+            register={register}
+            errors={errors}
           />
-          <StyledEyeIcon icon={eyeIconPassword} onClick={togglePasswordVisibility} />
+          <StyledEyeIcon
+            icon={eyeIconPassword}
+            onClick={togglePasswordVisibility}
+          />
         </StyledWrapper>
-        <StyledError>{errors.password?.message}</StyledError>
 
-        <StyledLabel htmlFor="confirmPassword">{labelText.confirmPassword} </StyledLabel>
         <StyledWrapper>
-          <StyledInputWithPassword
+          <FormInput
+            label={labelText.confirmPassword}
+            name="confirmPassword"
             type={confirmPasswordShown ? "text" : "password"}
-            {...register("confirmPassword")}
-            className={confirmPasswordShown ? "password-visible" : "password-hidden"}
-            autoComplete="new-password"
+            register={register}
+            errors={errors}
           />
-          <StyledEyeIcon icon={eyeIconConfirmPassword} onClick={toggleConfirmPasswordVisibility} />
+          <StyledEyeIcon
+            icon={eyeIconConfirmPassword}
+            onClick={toggleConfirmPasswordVisibility}
+          />
         </StyledWrapper>
-        <StyledError>{errors.confirmPassword?.message}</StyledError>
-        {/*{watchPassword !== watchConfirmPassword && <StyledError>Passwords do not match</StyledError>}*/}
 
-        <StyledButton type="submit" className="button">
+        <StyledButton type="submit" className="button" margin="38px 0 0 0">
           {buttonText.signUp}
         </StyledButton>
       </StyledForm>
