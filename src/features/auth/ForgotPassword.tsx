@@ -2,19 +2,35 @@ import { useAppDispatch } from "@/app/hooks";
 import { authThunks } from "@/features/auth/authSlice";
 import { RootState } from "@/app/store";
 import React, { useEffect, useState } from "react";
-import { SubmitHandler, useForm, FormProvider, useFormContext } from "react-hook-form";
+import {
+  SubmitHandler,
+  useForm,
+  FormProvider,
+  useFormContext,
+} from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { StyledForm, StyledError, StyledButton, StyledInput } from "./ForgotPasswordStyles";
+import { StyledForm, StyledButton } from "@/common/styles/commonStyles";
 import { useSelector } from "react-redux";
 import { appActions } from "@/app/AppSlice";
 import { useNavigate } from "react-router-dom";
-import { buttonText, infoMessage } from "@/assets/constants/contstanse";
+import {
+  buttonText,
+  infoMessage,
+  linkText,
+  title,
+} from "@/assets/constants/contstanse";
 import { Message } from "@/features/Message/Message";
+import { FormInput } from "@/features/input/FormInput";
+import { Title } from "@/features/title/Title";
+import { CustomLink } from "@/features/link/CustomLink";
 
 const schema = yup.object({
-  email: yup.string().email("Please enter a valid email address in the email field").required("Email is required"),
+  email: yup
+    .string()
+    .email("Please enter a valid email address in the email field")
+    .required("Email is required"),
 });
 
 type FormData = yup.InferType<typeof schema>;
@@ -48,23 +64,38 @@ export const ForgotPassword = () => {
     }
   };
 
-  const methods = useFormContext();
+  // const methods = useFormContext();
 
   return (
-    <FormProvider {...methods}>
-      <div>
-        <StyledForm onSubmit={handleSubmit(onSubmit)}>
-          {/*<StyledLabel htmlFor="email">Email </StyledLabel>*/}
-          <StyledInput type="text" {...register("email")} placeholder="Email" />
-          <StyledError>{errors.email?.message}</StyledError>
+    // <FormProvider {...methods}>
+    <>
+      <Title>{title.forgotPassword}</Title>
 
-          <Message value={infoMessage.forgotPasswordOne} textAlign={"left"} />
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <FormInput
+          name="email"
+          type="text"
+          register={register}
+          errors={errors}
+          inputProps={{ placeholder: "Email" }}
+        />
 
-          <StyledButton type="submit" className="button">
-            {buttonText.forgotPassword}
-          </StyledButton>
-        </StyledForm>
-      </div>
-    </FormProvider>
+        <Message value={infoMessage.forgotPasswordOne} textAlign={"left"} />
+
+        <StyledButton type="submit" className="button" margin="70px 0 0 0">
+          {buttonText.forgotPassword}
+        </StyledButton>
+      </StyledForm>
+
+      <Message value={infoMessage.forgotPasswordTwo} margin={"30px 0 15px"} />
+      <CustomLink
+        to="/sign-in"
+        margin={"0 0 48px"}
+        textDecorationLine={"underline"}
+      >
+        {linkText.tryLoggingIn}
+      </CustomLink>
+    </>
+    // </FormProvider>
   );
 };

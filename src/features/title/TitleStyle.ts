@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { ReactNode } from "react";
-import { colorVariables, resetMarginsAndPaddings } from "@/common/styles/commonStyles";
+import {
+  colorVariables,
+  resetMarginsAndPaddings,
+  font,
+} from "@/common/styles/commonStyles";
 
 type TitlePropsType = {
   children: ReactNode;
@@ -8,7 +12,7 @@ type TitlePropsType = {
 
 export const TitleWrapper = styled.h1<TitlePropsType>`
   ${resetMarginsAndPaddings};
-  font-family: "Montserrat", sans-serif;
+  ${font};
   padding: 35px 0;
   font-style: normal;
   font-weight: 600;

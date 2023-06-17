@@ -11,8 +11,17 @@ import {
   StyledEyeIcon,
   StyledButton,
 } from "@/common/styles/commonStyles";
-import { buttonText, labelText } from "@/assets/constants/contstanse";
+import {
+  buttonText,
+  infoMessage,
+  labelText,
+  linkText,
+  title,
+} from "@/assets/constants/contstanse";
 import { FormInput } from "@/features/input/FormInput";
+import { Title } from "@/features/title/Title";
+import { Message } from "@/features/Message/Message";
+import { CustomLink } from "@/features/link/CustomLink";
 
 // TODO
 // плохо работает валидация email, например anna@g пропускает
@@ -83,7 +92,9 @@ export const SignUp = () => {
   const eyeIconConfirmPassword = confirmPasswordShown ? faEyeSlash : faEye;
 
   return (
-    <div>
+    <>
+      <Title>{title.signUp}</Title>
+
       <StyledForm onSubmit={handleSubmit(onSubmit)}>
         <FormInput
           label={labelText.email}
@@ -125,6 +136,15 @@ export const SignUp = () => {
           {buttonText.signUp}
         </StyledButton>
       </StyledForm>
-    </div>
+
+      <Message value={infoMessage.signUp} margin={"30px 0 15px"} />
+      <CustomLink
+        to="/sign-in"
+        margin={"0 0 48px"}
+        textDecorationLine={"underline"}
+      >
+        {linkText.signIn}
+      </CustomLink>
+    </>
   );
 };

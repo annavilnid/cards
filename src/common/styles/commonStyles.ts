@@ -8,6 +8,10 @@ export const resetMarginsAndPaddings = css`
   padding: 0;
 `;
 
+export const font = css`
+  font-family: "Montserrat", sans-serif;
+`;
+
 export const colorVariables = css`
   --blue-color: #366eff;
   --black-color: #000000;

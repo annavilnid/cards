@@ -1,5 +1,11 @@
 import { Counter } from "./features/counter/Counter";
-import { createBrowserRouter, RouterProvider, Outlet, useRouteError, useNavigate } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Outlet,
+  useRouteError,
+  useNavigate,
+} from "react-router-dom";
 import "./App.css";
 import { store } from "@/app/store";
 import { Provider } from "react-redux";
@@ -11,14 +17,10 @@ import { Header } from "@/features/header/Header";
 import { Form } from "@/features/form/Form";
 import { SignUp } from "@/features/auth/SignUp";
 import { SignIn } from "@/features/auth/SignIn";
-import { Title } from "@/features/title/Title";
-import { CustomLink } from "@/features/link/CustomLink";
 import { ForgotPassword } from "@/features/auth/ForgotPassword";
-import { Message } from "@/features/Message/Message";
-import { buttonText, infoMessage, title, linkText } from "@/assets/constants/contstanse";
-import logo from "@/assets/check-email.svg";
 import { SetNewPassword } from "@/features/auth/SetNewPassword";
 import { Profile } from "@/features/profile/Profile";
+import { CheckEmail } from "@/features/auth/CheckEmail";
 
 export const Test = () => {
   const isLoading = useAppSelector((state) => state.app.isLoading);
@@ -43,6 +45,10 @@ export const Test = () => {
     }
   }, [userProfile, navigate]);
 
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+
   return (
     <div className="App">
       {isLoading && <h1>Loader...</h1>}
@@ -64,63 +70,24 @@ const router = createBrowserRouter(
           children: [
             {
               path: "sign-in",
-              element: (
-                <>
-                  <Title>{title.signIn}</Title>
-                  <SignIn />
-                  <Message value={infoMessage.signIn} margin={"30px 0 15px"} />
-                  <CustomLink to="/sign-up" margin={"0 0 48px"} textDecorationLine={"underline"}>
-                    {linkText.signUp}
-                  </CustomLink>
-                </>
-              ),
+              element: <SignIn />,
             },
             {
               path: "sign-up",
-              element: (
-                <>
-                  <Title>{title.signUp}</Title>
-                  <SignUp />
-                  <Message value={infoMessage.signUp} margin={"30px 0 15px"} />
-                  <CustomLink to="/sign-in" margin={"0 0 48px"} textDecorationLine={"underline"}>
-                    {linkText.signIn}
-                  </CustomLink>
-                </>
-              ),
+              element: <SignUp />,
             },
             {
               path: "forgot-password",
-              element: (
-                <>
-                  <Title>{title.forgotPassword}</Title>
-                  <ForgotPassword />
-                  <Message value={infoMessage.forgotPasswordTwo} margin={"30px 0 15px"} />
-                  <CustomLink to="/sign-in" margin={"0 0 48px"} textDecorationLine={"underline"}>
-                    {linkText.tryLoggingIn}
-                  </CustomLink>
-                </>
-              ),
+              element: <ForgotPassword />,
             },
             {
               path: "check-email",
-              element: (
-                <>
-                  <Title>{title.checkEmail}</Title>
-                  <img src={logo} alt="Logo check email" />
-                  <Message value={infoMessage.checkEmail} margin={"30px 0 15px"} />
-                  <CustomLink to="/sign-in">{buttonText.checkEmail}</CustomLink>
-                </>
-              ),
+              element: <CheckEmail />,
             },
             {
               // path: "set-new-password/:token",
               path: "set-new-password",
-              element: (
-                <>
-                  <Title>{title.setNewPassword}</Title>
-                  <SetNewPassword />
-                </>
-              ),
+              element: <SetNewPassword />,
             },
             {
               path: "profile",

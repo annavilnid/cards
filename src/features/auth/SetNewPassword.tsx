@@ -4,26 +4,28 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
-  StyledInput,
   StyledForm,
-  StyledLabel,
   StyledWrapper,
-  StyledInputWithPassword,
-  StyledError,
   StyledEyeIcon,
   StyledButton,
-} from "./SignUpStyles";
-import { buttonText } from "@/assets/constants/contstanse";
+} from "@/common/styles/commonStyles";
+import { buttonText, labelText, title } from "@/assets/constants/contstanse";
+import { FormInput } from "@/features/input/FormInput";
+import { Title } from "@/features/title/Title";
 
 const schema = yup.object({
   password: yup
     .string()
     .required("Password is required")
-    .test("password-length", "Password must be at least 8 characters", (value) => {
-      return !!value && value.length >= 8;
-    }),
+    .test(
+      "password-length",
+      "Password must be at least 8 characters",
+      (value) => {
+        return !!value && value.length >= 8;
+      }
+    ),
 });
 
 type FormData = yup.InferType<typeof schema>;
@@ -31,7 +33,8 @@ type FormData = yup.InferType<typeof schema>;
 export const SetNewPassword = () => {
   const dispatch = useAppDispatch();
   const [passwordShown, setPasswordShown] = useState<boolean>(false);
-  const [confirmPasswordShown, setConfirmPasswordShown] = useState<boolean>(false);
+  const [confirmPasswordShown, setConfirmPasswordShown] =
+    useState<boolean>(false);
 
   const {
     register,
@@ -63,23 +66,28 @@ export const SetNewPassword = () => {
   const eyeIconPassword = passwordShown ? faEyeSlash : faEye;
 
   return (
-    <div>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <StyledLabel htmlFor="password">Password </StyledLabel>
-        <StyledWrapper>
-          <StyledInputWithPassword
-            type={passwordShown ? "text" : "password"}
-            {...register("password")}
-            className={passwordShown ? "password-visible" : "password-hidden"}
-          />
-          <StyledEyeIcon icon={eyeIconPassword} onClick={togglePasswordVisibility} />
-        </StyledWrapper>
-        <StyledError>{errors.password?.message}</StyledError>
+    <>
+      <Title>{title.setNewPassword}</Title>
 
-        <StyledButton type="submit" className="button">
+      <StyledForm onSubmit={handleSubmit(onSubmit)}>
+        <StyledWrapper>
+          <FormInput
+            label={labelText.password}
+            name="password"
+            type={passwordShown ? "text" : "password"}
+            register={register}
+            errors={errors}
+          />
+          <StyledEyeIcon
+            icon={eyeIconPassword}
+            onClick={togglePasswordVisibility}
+          />
+        </StyledWrapper>
+
+        <StyledButton type="submit" className="button" margin="70px 0 0 0">
           {buttonText.setNewPassword}
         </StyledButton>
       </StyledForm>
-    </div>
+    </>
   );
 };

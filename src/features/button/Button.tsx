@@ -10,9 +10,18 @@ type ButtonPropsType = {
   type: "button" | "submit" | "reset";
 };
 
-export function CustomButton({ className, children, onClick, type }: ButtonPropsType) {
+export function CustomButton({
+  className,
+  children,
+  onClick,
+  type,
+}: ButtonPropsType) {
   return (
-    <Button type={type} className={className} onClick={onClick ? onClick : undefined}>
+    <Button
+      type={type}
+      className={className}
+      onClick={onClick ? onClick : undefined}
+    >
       {children}
     </Button>
   );

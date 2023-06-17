@@ -17,9 +17,18 @@ import {
   StyledEyeIcon,
   StyledContainer,
 } from "@/common/styles/commonStyles";
-import { buttonText, labelText, linkText } from "@/assets/constants/contstanse";
+import {
+  buttonText,
+  infoMessage,
+  labelText,
+  linkText,
+  title,
+} from "@/assets/constants/contstanse";
 import { CustomLink } from "@/features/link/CustomLink";
 import { FormInput } from "@/features/input/FormInput";
+import { Title } from "@/features/title/Title";
+import { Message } from "@/features/Message/Message";
+import { useNavigate } from "react-router-dom";
 // import * as Checkbox from "@radix-ui/react-checkbox";
 // import { CheckIcon } from "@radix-ui/react-icons";
 
@@ -46,6 +55,7 @@ type FormData = yup.InferType<typeof schema>;
 export const SignIn = () => {
   const dispatch = useAppDispatch();
   const [passwordShown, setPasswordShown] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -56,14 +66,20 @@ export const SignIn = () => {
     mode: "onChange",
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     console.log(data);
     const payload = {
       email: data.email,
       password: data.password,
       rememberMe: !!data.rememberMe,
     };
-    dispatch(authThunks.login(payload));
+    // d
+    // Редирект на страницу профиля после успешной аутентификации
+
+    const result = await dispatch(authThunks.login(payload));
+    if (result.type === "auth/login/fulfilled") {
+      navigate("/profile"); // Редирект на страницу профиля после успешной аутентификации
+    }
   };
 
   const togglePasswordVisibility = () => {
@@ -75,51 +91,64 @@ export const SignIn = () => {
   const methods = useFormContext();
 
   return (
-    <FormProvider {...methods}>
-      <StyledForm onSubmit={handleSubmit(onSubmit)}>
-        <FormInput
-          label={labelText.email}
-          type="text"
-          name="email"
-          register={register}
-          errors={errors}
-        />
+    <>
+      <Title>{title.signIn}</Title>
 
-        <StyledWrapper>
+      <FormProvider {...methods}>
+        <StyledForm onSubmit={handleSubmit(onSubmit)}>
           <FormInput
-            label={labelText.password}
-            name="password"
-            type={passwordShown ? "text" : "password"}
+            label={labelText.email}
+            type="text"
+            name="email"
             register={register}
             errors={errors}
           />
-          <StyledEyeIcon
-            icon={eyeIconPassword}
-            onClick={togglePasswordVisibility}
-          />
-        </StyledWrapper>
 
-        <StyledContainer>
-          <input type="checkbox" {...register("rememberMe")} />
-          <label htmlFor="rememberMe">{labelText.rememberMe}</label>
-        </StyledContainer>
+          <StyledWrapper>
+            <FormInput
+              label={labelText.password}
+              name="password"
+              type={passwordShown ? "text" : "password"}
+              register={register}
+              errors={errors}
+            />
+            <StyledEyeIcon
+              icon={eyeIconPassword}
+              onClick={togglePasswordVisibility}
+            />
+          </StyledWrapper>
 
-        <CustomLink
-          to="/forgot-password"
-          margin={"30px 0 0 0"}
-          alignSelf={"end"}
-          fontWeight={"500"}
-          color={"var(--black-color)"}
-          fontSize={"14px"}
-          lineHeight={"1.2"}
-        >
-          {linkText.forgotPassword}
-        </CustomLink>
+          <StyledContainer>
+            <input type="checkbox" {...register("rememberMe")} />
+            <label htmlFor="rememberMe">{labelText.rememberMe}</label>
+          </StyledContainer>
 
-        <StyledButton type="submit" className="button" margin="70px 0 0 0">
-          {buttonText.signIn}
-        </StyledButton>
-      </StyledForm>
-    </FormProvider>
+          <CustomLink
+            to="/forgot-password"
+            margin={"30px 0 0 0"}
+            alignSelf={"end"}
+            fontWeight={"500"}
+            color={"var(--black-color)"}
+            fontSize={"14px"}
+            lineHeight={"1.2"}
+          >
+            {linkText.forgotPassword}
+          </CustomLink>
+
+          <StyledButton type="submit" className="button" margin="70px 0 0 0">
+            {buttonText.signIn}
+          </StyledButton>
+        </StyledForm>
+      </FormProvider>
+
+      <Message value={infoMessage.signIn} margin={"30px 0 15px"} />
+      <CustomLink
+        to="/sign-up"
+        margin={"0 0 48px"}
+        textDecorationLine={"underline"}
+      >
+        {linkText.signUp}
+      </CustomLink>
+    </>
   );
 };
