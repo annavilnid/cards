@@ -21,6 +21,9 @@ export const AuthApi = {
   changeUsersData: (params: any) => {
     return AuthInstance.put<any>("me", params);
   },
+  logout: (params: any) => {
+    return AuthInstance.delete<any>("me", params);
+  },
 };
 
 export type ArgRegisterType = Omit<ArgLoginType, "rememberMe">;
@@ -29,6 +32,11 @@ export type ArgLoginType = {
   email: string;
   password: string;
   rememberMe: boolean;
+};
+
+export type ChangeUsersDataType = {
+  name?: string;
+  avatar?: string;
 };
 
 export type ArgForgotPasswordType = {

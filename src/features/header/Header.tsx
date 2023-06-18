@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { HeaderWrapper, StyledButton } from "./HeaderStyles";
-import logo from "@/assets/header-logo.svg";
+import { HeaderWrapper } from "./HeaderStyles";
+import { ReactComponent as Logo } from "@/assets/header-logo.svg";
 import { buttonText } from "@/assets/constants/contstanse";
+import { StyledButton } from "@/common/styles/commonStyles";
 
 export function Header() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export function Header() {
 
   return (
     <HeaderWrapper>
-      <img src={logo} alt="Logo IT-Incubator" />
+      <Logo />
       <StyledButton type="button" onClick={onClickHandler} className="button">
         {buttonText.signIn}
       </StyledButton>

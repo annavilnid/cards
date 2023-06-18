@@ -4,6 +4,8 @@ type ButtonTextType = {
   forgotPassword: string;
   checkEmail: string;
   setNewPassword: string;
+  userProfileSave: string;
+  userProfileLogout: string;
 };
 
 type InfoMessageType = {
@@ -36,6 +38,7 @@ type LabelType = {
   password: string;
   rememberMe: string;
   confirmPassword: string;
+  userProfile: string;
 };
 
 //TODO
@@ -43,10 +46,12 @@ type LabelType = {
 export const infoMessage: InfoMessageType = {
   signIn: "Don't have an account?",
   signUp: "Already have an account?",
-  forgotPasswordOne: "Enter your email address and we will send you further instructions",
+  forgotPasswordOne:
+    "Enter your email address and we will send you further instructions",
   forgotPasswordTwo: "Did you remember your password?",
   checkEmail: "We’ve sent an Email with instructions to example@mail.com",
-  setNewPassword: "Create new password and we will send you further instructions to email",
+  setNewPassword:
+    "Create new password and we will send you further instructions to email",
 };
 
 export const buttonText: ButtonTextType = {
@@ -55,6 +60,8 @@ export const buttonText: ButtonTextType = {
   forgotPassword: "Send Instructions",
   checkEmail: "Back to login",
   setNewPassword: "Create new password",
+  userProfileSave: "save",
+  userProfileLogout: "Log out",
 };
 
 export const title: TitleType = {
@@ -78,4 +85,5 @@ export const labelText: LabelType = {
   password: "Password",
   confirmPassword: "Confirm Password",
   rememberMe: "Remember me",
+  userProfile: "Nickname",
 };

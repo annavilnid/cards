@@ -1,5 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ArgForgotPasswordType, ArgLoginType, ArgRegisterType, AuthApi, LoginResponseType } from "./authApi";
+import {
+  ArgForgotPasswordType,
+  ArgLoginType,
+  ArgRegisterType,
+  AuthApi,
+  ChangeUsersDataType,
+  LoginResponseType,
+} from "./authApi";
 import { createAppAsyncThunk } from "@/common/utils/create-app-async-thunk";
 import { isAxiosError } from "axios";
 
@@ -35,15 +42,18 @@ const THUNK_PREFIXES = {
 //     });
 // });
 
-const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", async (arg: ArgRegisterType, thunkAPI) => {
-  const { rejectWithValue } = thunkAPI;
-  try {
-    const res = await AuthApi.register(arg);
-    console.log("register", res);
-  } catch (e) {
-    return rejectWithValue("Register Error");
+const register = createAppAsyncThunk<void, ArgRegisterType>(
+  "auth/register",
+  async (arg: ArgRegisterType, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await AuthApi.register(arg);
+      console.log("register", res);
+    } catch (e) {
+      return rejectWithValue("Register Error");
+    }
   }
-});
+);
 
 // const register = createAppAsyncThunk<any, ArgRegisterType>(
 //   THUNK_PREFIXES.REGISTER,
@@ -60,35 +70,59 @@ const register = createAppAsyncThunk<void, ArgRegisterType>("auth/register", asy
 //   }
 // );
 
-const forgotPassword = createAppAsyncThunk(THUNK_PREFIXES.FORGOT_PASSWORD, (arg: ArgForgotPasswordType, thunkAPI) => {
-  AuthApi.forgotPassword(arg)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((res) => {
-      console.error(res);
-    });
+const forgotPassword = createAppAsyncThunk(
+  THUNK_PREFIXES.FORGOT_PASSWORD,
+  (arg: ArgForgotPasswordType, thunkAPI) => {
+    AuthApi.forgotPassword(arg)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((res) => {
+        console.error(res);
+      });
+  }
+);
+
+const getProfile = createAppAsyncThunk(
+  THUNK_PREFIXES.PROFILE,
+  (arg: any, thunkAPI) => {
+    AuthApi.getProfile(arg)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((res) => {
+        console.error(res);
+      });
+  }
+);
+
+// const changeUsersData = createAppAsyncThunk(
+//   THUNK_PREFIXES.PROFILE,
+//   (arg: any, thunkAPI) => {
+//     AuthApi.changeUsersData(arg)
+//       .then((res) => {
+//         console.log(res);
+//       })
+//       .catch((res) => {
+//         console.error(res);
+//       });
+//   }
+// );
+
+const changeUsersData = createAppAsyncThunk<
+  // 1. То, что возвращает Thunk
+  { profile: LoginResponseType },
+  // 2. ThunkArg - аргументы санки (тип, который санка принимает)
+  ChangeUsersDataType
+  // 3. AsyncThunkConfig. Какие есть поля смотрим в доке / исходном коде.
+  // state - используем для типизации App. Когда используем getState
+  // dispatch - типизация диспатча
+  // rejectValue - используем для типизации возвращаемой ошибки
+>(THUNK_PREFIXES.PROFILE, async (arg: ChangeUsersDataType) => {
+  const res = await AuthApi.changeUsersData(arg);
+  return { profile: res.data.updatedUser };
 });
 
-const getProfile = createAppAsyncThunk(THUNK_PREFIXES.PROFILE, (arg: any, thunkAPI) => {
-  AuthApi.getProfile(arg)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((res) => {
-      console.error(res);
-    });
-});
-
-const changeUsersData = createAppAsyncThunk(THUNK_PREFIXES.PROFILE, (arg: any, thunkAPI) => {
-  AuthApi.changeUsersData(arg)
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((res) => {
-      console.error(res);
-    });
-});
 // //TODO
 // const login = createAsyncThunk("auth/login", async (arg: ArgLoginType, thunkAPI) => {
 //   const { dispatch } = thunkAPI;
@@ -108,6 +142,20 @@ const login = createAppAsyncThunk<
   // dispatch - типизация диспатча
   // rejectValue - используем для типизации возвращаемой ошибки
 >(THUNK_PREFIXES.LOGIN, async (arg: ArgLoginType) => {
+  const res = await AuthApi.login(arg);
+  return { profile: res.data };
+});
+
+const logout = createAppAsyncThunk<
+  // 1. То, что возвращает Thunk
+  { profile: LoginResponseType },
+  // 2. ThunkArg - аргументы санки (тип, который санка принимает)
+  ArgLoginType
+  // 3. AsyncThunkConfig. Какие есть поля смотрим в доке / исходном коде.
+  // state - используем для типизации App. Когда используем getState
+  // dispatch - типизация диспатча
+  // rejectValue - используем для типизации возвращаемой ошибки
+>(THUNK_PREFIXES.PROFILE, async (arg: ArgLoginType) => {
   const res = await AuthApi.login(arg);
   return { profile: res.data };
 });
@@ -140,9 +188,22 @@ const slice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       state.profile = action.payload.profile;
     });
+
+    //TODO
+    //Возможно нужно передать только name или только avatar а не весь profile
+
+    builder.addCase(changeUsersData.fulfilled, (state, action) => {
+      state.profile = action.payload.profile;
+    });
   },
 });
 
 export const authReducer = slice.reducer;
 export const authActions = slice.actions;
-export const authThunks = { register, login, forgotPassword, getProfile, changeUsersData };
+export const authThunks = {
+  register,
+  login,
+  forgotPassword,
+  getProfile,
+  changeUsersData,
+};

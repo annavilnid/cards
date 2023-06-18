@@ -73,9 +73,6 @@ export const SignIn = () => {
       password: data.password,
       rememberMe: !!data.rememberMe,
     };
-    // d
-    // Редирект на страницу профиля после успешной аутентификации
-
     const result = await dispatch(authThunks.login(payload));
     if (result.type === "auth/login/fulfilled") {
       navigate("/profile"); // Редирект на страницу профиля после успешной аутентификации

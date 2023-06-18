@@ -31,9 +31,9 @@ export const hoverStyle = css`
 
 export const Button = styled.button`
   padding: 8px 28px;
-  box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  border-radius: 30px;
+  //box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35),
+  //  inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  //border-radius: 30px;
   border: none;
   font-family: "Montserrat", sans-serif;
   font-style: normal;
@@ -82,5 +82,20 @@ export const StyledButton = styled(CustomButton)<{ margin?: string }>`
     background-color: var(--blue-color);
     margin: ${({ margin }) => margin || "0"};
     min-width: 347px;
+    box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+  }
+`;
+
+export const StyledGrayButton = styled(CustomButton)<{ margin?: string }>`
+  &.button {
+    ${colorVariables};
+    background-color: var(--gray-color);
+    color: var(--black-color);
+    margin: ${({ margin }) => margin || "0"};
+    box-shadow: 0 2px 10px rgba(109, 109, 109, 0.25),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
   }
 `;
