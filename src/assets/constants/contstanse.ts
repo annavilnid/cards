@@ -6,6 +6,7 @@ type ButtonTextType = {
   setNewPassword: string;
   userProfileSave: string;
   userProfileLogout: string;
+  404: string;
 };
 
 type InfoMessageType = {
@@ -15,6 +16,7 @@ type InfoMessageType = {
   forgotPasswordTwo: string;
   checkEmail: string;
   setNewPassword: string;
+  404: string;
 };
 
 type TitleType = {
@@ -24,6 +26,7 @@ type TitleType = {
   checkEmail: string;
   setNewPassword: string;
   profile: string;
+  404: string;
 };
 
 type LinkType = {
@@ -52,6 +55,7 @@ export const infoMessage: InfoMessageType = {
   checkEmail: "We’ve sent an Email with instructions to example@mail.com",
   setNewPassword:
     "Create new password and we will send you further instructions to email",
+  404: "Sorry! Page not found!",
 };
 
 export const buttonText: ButtonTextType = {
@@ -62,6 +66,7 @@ export const buttonText: ButtonTextType = {
   setNewPassword: "Create new password",
   userProfileSave: "save",
   userProfileLogout: "Log out",
+  404: "Back to home page",
 };
 
 export const title: TitleType = {
@@ -71,6 +76,7 @@ export const title: TitleType = {
   checkEmail: "Check Email",
   setNewPassword: "Create new password",
   profile: "Personal Information",
+  404: "Ooops!",
 };
 
 export const linkText: LinkType = {

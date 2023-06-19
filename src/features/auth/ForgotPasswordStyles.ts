@@ -1,7 +1,10 @@
-import { CustomButton } from "@/features/button/Button";
+import { CustomButton } from "@/shared/ui/button/Button";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { colorVariables, resetMarginsAndPaddings } from "@/common/styles/commonStyles";
+import {
+  colorVariables,
+  resetMarginsAndPaddings,
+} from "@/common/styles/commonStyles";
 
 const commonInputStyles = `
   min-height: 30px;

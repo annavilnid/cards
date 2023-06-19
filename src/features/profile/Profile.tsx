@@ -1,19 +1,20 @@
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { authThunks } from "@/features/auth/authSlice";
 import { buttonText, infoMessage, title } from "@/assets/constants/contstanse";
-import { Title } from "@/features/title/Title";
+import { Title } from "@/shared/ui/title/Title";
 import { ReactComponent as Avatar } from "@/assets/avatar.svg";
 import { ReactComponent as EditAvatar } from "@/assets/edit-avatar.svg";
 import { ReactComponent as LogOut } from "@/assets/logout.svg";
 import styled from "styled-components";
-import { CustomButton } from "@/features/button/Button";
+import { CustomButton } from "@/shared/ui/button/Button";
 import {
   EditableSpan,
   StyledInputButton,
 } from "@/features/profile/EditableSpan";
-import { Message } from "@/features/Message/Message";
-import React from "react";
+import { Message } from "@/shared/ui/message/Message";
+import React, { useEffect } from "react";
 import { StyledGrayButton } from "@/common/styles/commonStyles";
+import { useNavigate } from "react-router-dom";
 
 export const StyledAvatar = styled(Avatar)`
   max-width: 96px;
@@ -47,14 +48,23 @@ export const StyledButton = styled(CustomButton)`
 
 export const Profile = () => {
   const dispatch = useAppDispatch();
-  const userEmail = useAppSelector((state) => state.auth.profile?.email);
+  const userProfile = useAppSelector((state) => state.auth.profile);
+  const navigate = useNavigate();
 
-  const changeDataHandler = () => {
-    const payload = {
-      name: "new name",
-    };
-    dispatch(authThunks.changeUsersData(payload));
+  useEffect(() => {
+    if (!userProfile) {
+      navigate("/sign-in");
+    }
+  }, [userProfile, navigate]);
+
+  const onClickHandler = () => {
+    const payload = {};
+    dispatch(authThunks.logout(payload));
   };
+
+  if (!userProfile) {
+    return null; // или отобразить состояние загрузки, если необходимо
+  }
 
   return (
     <div>
@@ -66,8 +76,12 @@ export const Profile = () => {
         </StyledButton>
       </StyledWrapper>
       <EditableSpan />
-      <Message value={userEmail || ""} margin={"30px 0 15px"} />
-      <StyledGrayButton type="button" className="button">
+      <Message value={userProfile.email} margin={"30px 0 15px"} />
+      <StyledGrayButton
+        type="button"
+        className="button"
+        onClick={onClickHandler}
+      >
         <ButtonContainer>
           <LogOut />
           <p>{buttonText.userProfileLogout}</p>

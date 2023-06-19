@@ -18,10 +18,10 @@ import {
   linkText,
   title,
 } from "@/assets/constants/contstanse";
-import { FormInput } from "@/features/input/FormInput";
-import { Title } from "@/features/title/Title";
-import { Message } from "@/features/Message/Message";
-import { CustomLink } from "@/features/link/CustomLink";
+import { FormInput } from "@/shared/ui/input/FormInput";
+import { Title } from "@/shared/ui/title/Title";
+import { Message } from "@/shared/ui/message/Message";
+import { CustomLink } from "@/shared/ui/link/CustomLink";
 
 // TODO
 // плохо работает валидация email, например anna@g пропускает

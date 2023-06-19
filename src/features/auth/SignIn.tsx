@@ -24,10 +24,10 @@ import {
   linkText,
   title,
 } from "@/assets/constants/contstanse";
-import { CustomLink } from "@/features/link/CustomLink";
-import { FormInput } from "@/features/input/FormInput";
-import { Title } from "@/features/title/Title";
-import { Message } from "@/features/Message/Message";
+import { CustomLink } from "@/shared/ui/link/CustomLink";
+import { FormInput } from "@/shared/ui/input/FormInput";
+import { Title } from "@/shared/ui/title/Title";
+import { Message } from "@/shared/ui/message/Message";
 import { useNavigate } from "react-router-dom";
 // import * as Checkbox from "@radix-ui/react-checkbox";
 // import { CheckIcon } from "@radix-ui/react-icons";

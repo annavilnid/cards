@@ -2,13 +2,19 @@ import { Counter } from "./features/counter/Counter";
 import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import { useEffect } from "react";
 import { appActions } from "@/app/AppSlice";
-import { HashRouter, Route, RouterProvider, Routes, useRoutes } from "react-router-dom";
+import {
+  HashRouter,
+  Route,
+  RouterProvider,
+  Routes,
+  useRoutes,
+} from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
 import { store } from "@/app/store";
 import { ForgotPassword } from "@/features/setNewPassword/ForgotPassword";
 import { Profile } from "@/features/profile/Profile";
-import { Form } from "@/features/form/Form";
+import { Form } from "@/shared/ui/form/Form";
 import PopoverDemo from "@/features/del/ProverDemo";
 import CheckboxDemo from "@/features/del/ProverDemo";
 import { GlobalStyles } from "@/common/styles/GlobalStyles";

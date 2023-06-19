@@ -14,13 +14,14 @@ import { useAppDispatch, useAppSelector } from "@/app/hooks";
 import React, { useEffect } from "react";
 import { appActions } from "@/app/AppSlice";
 import { Header } from "@/features/header/Header";
-import { Form } from "@/features/form/Form";
+import { Form } from "@/shared/ui/form/Form";
 import { SignUp } from "@/features/auth/SignUp";
 import { SignIn } from "@/features/auth/SignIn";
 import { ForgotPassword } from "@/features/auth/ForgotPassword";
 import { SetNewPassword } from "@/features/auth/SetNewPassword";
 import { Profile } from "@/features/profile/Profile";
 import { CheckEmail } from "@/features/auth/CheckEmail";
+import { ErrorPage } from "@/shared/ui/errorpage/ErrorPage";
 
 export const Test = () => {
   const isLoading = useAppSelector((state) => state.app.isLoading);
@@ -122,20 +123,5 @@ function Layout() {
       <Header />
       <Outlet />
     </>
-  );
-}
-
-function ErrorPage() {
-  const error: any = useRouteError();
-  console.error(error);
-
-  return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
-      </p>
-    </div>
   );
 }

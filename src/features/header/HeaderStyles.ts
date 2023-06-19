@@ -3,7 +3,7 @@ import {
   colorVariables,
   resetMarginsAndPaddings,
 } from "@/common/styles/commonStyles";
-import { CustomButton } from "@/features/button/Button";
+import { CustomButton } from "@/shared/ui/button/Button";
 
 export const HeaderWrapper = styled.header`
   padding: 0 136px;

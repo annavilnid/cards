@@ -21,10 +21,10 @@ import {
   linkText,
   title,
 } from "@/assets/constants/contstanse";
-import { Message } from "@/features/Message/Message";
-import { FormInput } from "@/features/input/FormInput";
-import { Title } from "@/features/title/Title";
-import { CustomLink } from "@/features/link/CustomLink";
+import { Message } from "@/shared/ui/message/Message";
+import { FormInput } from "@/shared/ui/input/FormInput";
+import { Title } from "@/shared/ui/title/Title";
+import { CustomLink } from "@/shared/ui/link/CustomLink";
 
 const schema = yup.object({
   email: yup

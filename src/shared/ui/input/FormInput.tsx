@@ -9,7 +9,7 @@ import {
   StyledError,
   StyledInput,
   StyledLabel,
-} from "@/features/input/FormInputStyles";
+} from "@/shared/ui/input/FormInputStyles";
 
 type FormInputProps<T extends FieldValues> = {
   label?: string;

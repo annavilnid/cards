@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { css } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CustomButton } from "@/features/button/Button";
+import { CustomButton } from "@/shared/ui/button/Button";
 
 export const resetMarginsAndPaddings = css`
   margin: 0;
@@ -17,6 +17,7 @@ export const colorVariables = css`
   --black-color: #000000;
   --wite-color: #ffffff;
   --gray-color: #fcfcfc;
+  --lite-color: #f9f9fa;
   --red-color: #ff0000;
 `;
 
@@ -76,15 +77,20 @@ export const StyledEyeIcon = styled(FontAwesomeIcon)`
   ${hoverStyle};
 `;
 
-export const StyledButton = styled(CustomButton)<{ margin?: string }>`
+export const StyledButton = styled(CustomButton)<{
+  margin?: string;
+  minWidth?: string;
+}>`
   &.button {
     ${colorVariables};
     background-color: var(--blue-color);
     margin: ${({ margin }) => margin || "0"};
-    min-width: 347px;
+    min-width: ${({ minWidth }) => minWidth || "347px"};
+    //min-width: 347px;
     box-shadow: 0 4px 18px rgba(54, 110, 255, 0.35),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
     border-radius: 30px;
+    letter-spacing: 0.01em;
   }
 `;
 

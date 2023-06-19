@@ -148,16 +148,16 @@ const login = createAppAsyncThunk<
 
 const logout = createAppAsyncThunk<
   // 1. То, что возвращает Thunk
-  { profile: LoginResponseType },
+  void,
   // 2. ThunkArg - аргументы санки (тип, который санка принимает)
-  ArgLoginType
+  {}
   // 3. AsyncThunkConfig. Какие есть поля смотрим в доке / исходном коде.
   // state - используем для типизации App. Когда используем getState
   // dispatch - типизация диспатча
   // rejectValue - используем для типизации возвращаемой ошибки
->(THUNK_PREFIXES.PROFILE, async (arg: ArgLoginType) => {
-  const res = await AuthApi.login(arg);
-  return { profile: res.data };
+>(THUNK_PREFIXES.PROFILE, async (arg: {}) => {
+  const res = await AuthApi.logout(arg);
+  // return { profile: res.data };
 });
 
 // const login = createAsyncThunk(THUNK_PREFIXES.LOGIN, (arg: ArgLoginType, thunkAPI) => {
@@ -192,8 +192,8 @@ const slice = createSlice({
     //TODO
     //Возможно нужно передать только name или только avatar а не весь profile
 
-    builder.addCase(changeUsersData.fulfilled, (state, action) => {
-      state.profile = action.payload.profile;
+    builder.addCase(logout.fulfilled, (state, action) => {
+      state.profile = null;
     });
   },
 });
@@ -206,4 +206,5 @@ export const authThunks = {
   forgotPassword,
   getProfile,
   changeUsersData,
+  logout,
 };

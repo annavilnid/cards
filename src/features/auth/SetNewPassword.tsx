@@ -12,8 +12,8 @@ import {
   StyledButton,
 } from "@/common/styles/commonStyles";
 import { buttonText, labelText, title } from "@/assets/constants/contstanse";
-import { FormInput } from "@/features/input/FormInput";
-import { Title } from "@/features/title/Title";
+import { FormInput } from "@/shared/ui/input/FormInput";
+import { Title } from "@/shared/ui/title/Title";
 
 const schema = yup.object({
   password: yup
